@@ -2,27 +2,27 @@
 using Microsoft.EntityFrameworkCore;
 #region EagerLoading 
 
-using EFLoadings.EagerLoading;
+//using EFLoadings.EagerLoading;
 
-var context = new UserDbContext();
+//var context = new UserDbContext();
 
-var user = context.Users
-    .Include(user => user.Address)
-    .ThenInclude(address => address.Regions)
-    .Include(user => user.Contacts)!
-    .ThenInclude(contact => contact.Provider)
-    .First();
+//var user = context.Users
+//    .Include(user => user.Address)
+//    .ThenInclude(address => address.Regions)
+//    .Include(user => user.Contacts)!
+//    .ThenInclude(contact => contact.Provider)
+//    .First();
 
-var contacts = user.Contacts;
+//var contacts = user.Contacts;
 
-Console.WriteLine(user.Name);
-Console.WriteLine(user.Address.Regions.Count);
-Console.WriteLine(user.Address.AddressName);
-Console.WriteLine(user.Contacts.Count);
-Console.WriteLine(user.Contacts[0].Phone);
-Console.WriteLine(user.Contacts[0].Provider.Name);
-foreach (var contact in contacts)
-    Console.WriteLine(contact.Phone);
+//Console.WriteLine(user.Name);
+//Console.WriteLine(user.Address.Regions.Count);
+//Console.WriteLine(user.Address.AddressName);
+//Console.WriteLine(user.Contacts.Count);
+//Console.WriteLine(user.Contacts[0].Phone);
+//Console.WriteLine(user.Contacts[0].Provider.Name);
+//foreach (var contact in contacts)
+//    Console.WriteLine(contact.Phone);
 
 #endregion
 
@@ -35,6 +35,14 @@ foreach (var contact in contacts)
 
 //var user = context.Users.First();
 
+
+
+//Console.WriteLine(user.Name);
+//Console.WriteLine(user.Address.Regions.Count);
+//Console.WriteLine(user.Address.AddressName);
+//Console.WriteLine(user.Contacts.Count);
+//Console.WriteLine(user.Contacts[0].Phone);
+//Console.WriteLine(user.Contacts[0].Provider.Name);
 //Console.WriteLine(user.Name);
 //Console.WriteLine(user.Address.AddressName);
 //foreach (var contact in user.Contacts)
