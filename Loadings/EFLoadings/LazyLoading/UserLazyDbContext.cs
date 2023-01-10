@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFLoadings.EagerLoading;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace EFLoadings.LazyLoading;
@@ -7,10 +8,13 @@ public class UserLazyDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Address { get; set; }
+    public DbSet<Contact> Contacts { get; set; }    
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptions)
     {
         dbContextOptions
+            .UseLazyLoadingProxies()
             .UseSqlite("Data source=user.db")
             .LogTo(Console.WriteLine, LogLevel.Information);
     }
@@ -30,6 +34,22 @@ public class UserLazyDbContext : DbContext
         {
             Id = 1,
             AddressName = "Farg'ona Buvayda Yangiqishloq",
+        });
+
+        modelBuilder.Entity<Contact>().HasData(new Contact[]
+        {
+            new Contact()
+            {
+                Id = 1,
+                Phone = "+998912040618",
+                UserId = 1,
+            },
+            new Contact()
+            {
+                Id = 2,
+                Phone = "+998912040618",
+                UserId = 1,
+            },
         });
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EFLoadings.EagerLoading;
+﻿namespace EFLoadings.LazyLoading;
 
 public class Contact
 {
@@ -6,10 +6,5 @@ public class Contact
     public string? Phone { get; set; }
 
     public int UserId { get; set; }
-    public User? User { get; set; }
-}
-
-public class Provider
-{
-
+    public virtual User? User { get; set; }
 }

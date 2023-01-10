@@ -7,6 +7,7 @@ public class UserExplicitDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Address { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptions)
     {

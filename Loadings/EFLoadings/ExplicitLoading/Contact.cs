@@ -1,4 +1,4 @@
-﻿namespace EFLoadings.EagerLoading;
+﻿namespace EFLoadings.ExplicitLoading;
 
 public class Contact
 {
@@ -7,9 +7,4 @@ public class Contact
 
     public int UserId { get; set; }
     public User? User { get; set; }
-}
-
-public class Provider
-{
-
 }
