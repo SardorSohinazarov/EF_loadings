@@ -4,7 +4,7 @@
 
 namespace EFLoadings.Migrations
 {
-    public partial class InsertData : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,6 +41,26 @@ namespace EFLoadings.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Phone = table.Column<string>(type: "TEXT", nullable: true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Contacts_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Address",
                 columns: new[] { "Id", "AddressName" },
@@ -51,6 +71,21 @@ namespace EFLoadings.Migrations
                 columns: new[] { "Id", "AddressId", "Name" },
                 values: new object[] { 1, 1, "Sardor" });
 
+            migrationBuilder.InsertData(
+                table: "Contacts",
+                columns: new[] { "Id", "Phone", "UserId" },
+                values: new object[] { 1, "+998912040618", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Contacts",
+                columns: new[] { "Id", "Phone", "UserId" },
+                values: new object[] { 2, "+998912040618", 1 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_UserId",
+                table: "Contacts",
+                column: "UserId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Users_AddressId",
                 table: "Users",
@@ -59,6 +94,9 @@ namespace EFLoadings.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Contacts");
+
             migrationBuilder.DropTable(
                 name: "Users");
 

@@ -7,6 +7,7 @@ public class UserDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Address { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptions)
     {
@@ -29,6 +30,22 @@ public class UserDbContext : DbContext
         {
             Id = 1,
             AddressName = "Farg'ona Buvayda Yangiqishloq",
+        });
+        
+        modelBuilder.Entity<Contact>().HasData(new Contact[]
+        {
+            new Contact()
+            {
+                Id = 1,
+                Phone = "+998912040618",
+                UserId = 1,
+            },
+            new Contact()
+            {
+                Id = 2,
+                Phone = "+998912040618",
+                UserId = 1,
+            },
         });
     }
 }
